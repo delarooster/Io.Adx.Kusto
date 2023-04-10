@@ -1,0 +1,18 @@
+jobs:
+    syncDatabase:
+        current:
+            adx:
+                clusterUri: "https://dvsaturnadx.eastus.kusto.windows.net"
+                database: "${DATABASE}"
+        target:
+            scripts:
+                - folderPath: "schema"
+        action:
+            pushToConsole: true
+            pushToCurrent: true
+
+tokenProvider:
+    tokens:
+        myToken:
+            clusterUri: "https://dvsaturnadx.eastus.kusto.windows.net/"
+            token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyIsImtpZCI6Ii1LSTNROW5OUjdiUm9meG1lWm9YcWJIWkdldyJ9.eyJhdWQiOiJodHRwczovL2R2bmF2aWNvYWR4LmVhc3R1cy5rdXN0by53aW5kb3dzLm5ldCIsImlzcyI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzI3NmFlOTIzLThmYzktNGQ3OC1hMzQxLTg3MTlhNWFiMGU0Ny8iLCJpYXQiOjE2Nzg5OTY5MTUsIm5iZiI6MTY3ODk5NjkxNSwiZXhwIjoxNjc5MDAxOTk1LCJhY3IiOiIxIiwiYWlvIjoiQWVRQUcvOFRBQUFBREdpa3Z5STFGVWl0cUJrNTBKL3VGbVlIT1puZy9FYUxFUThtaXZIaS9IYTk2Sng5QmdnOUVhcWthU2J0dlF4Q0NFd09lcGtvWTlpVVY5TFExZEJHN0l6RUVKTjJQYXdzd2l0eEp0TWN2bkxZMjZvZzFEWllQMzAvemVmR2xZeUd0aUs0ZWNWV216alJkZzdOM3dsMmxHNWlQU3lVaWtuN0pHQ3ZrVmlNS1VGb2VNc0VPUVZFVHdRUVpncVNnQ1pOOGVtYVpBSm9UWTJrUlBpSUVUK1U5UEtZd1R4ZE1kNkJTVWVEZ0FWVll1cStIaFBDRXJJQURtZmFtRy84cHc1Y1FnSGZpSko2Y1ZybEZjbUxrZ2hSSHBJa28wMzkrcTUwZnNwc2I0WmZrNEU9IiwiYWx0c2VjaWQiOiI1OjoxMDAzMjAwMUFEMDMxQjg4IiwiYW1yIjpbInB3ZCIsIm1mYSJdLCJhcHBpZCI6IjA0YjA3Nzk1LThkZGItNDYxYS1iYmVlLTAyZjllMWJmN2I0NiIsImFwcGlkYWNyIjoiMCIsImVtYWlsIjoiTWF0dGhldy5Dcm9va3NAT25lQVNHLmNvbSIsImZhbWlseV9uYW1lIjoiQ3Jvb2tzIiwiZ2l2ZW5fbmFtZSI6Ik1hdHQiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8xMzA5YWEzYi05Y2Q1LTRlNTMtOGYyNy04ZWU2YTI1NzNjM2MvIiwiaXBhZGRyIjoiNjcuMjM1LjEzMS40MyIsIm5hbWUiOiJNYXR0aGV3IENyb29rcyIsIm9pZCI6ImQwYTUzNzcyLTA2ZjItNDcxNS04NzZjLThhMGM5ZGM4ZjM2YSIsInB1aWQiOiIxMDAzMjAwMjIwMjFDMEVEIiwicmgiOiIwLkFWa0FJLWxxSjhtUGVFMmpRWWNacGFzT1IzZnFSaWNDUjBWTGdNbzhsLWFBNkxlZEFGTS4iLCJzY3AiOiJ1c2VyX2ltcGVyc29uYXRpb24iLCJzdWIiOiJoUmJUa2ZhemdteUxLR0ZOaFgwZXo0QXpIbmxkWlpyaWtMYTZKVW5iMUYwIiwidGlkIjoiMjc2YWU5MjMtOGZjOS00ZDc4LWEzNDEtODcxOWE1YWIwZTQ3IiwidW5pcXVlX25hbWUiOiJNYXR0aGV3LkNyb29rc0BPbmVBU0cuY29tIiwidXRpIjoiX3FUWFFaeVJta2EzZS03U3VSYW1BQSIsInZlciI6IjEuMCJ9.XwZ4pQoLSO70do_TS_POYjF-m4Rks2wqJ2eMQzPlegZMXCxeyCbGcICWrXWiy5OyT9chSkm40UjetZgXuIdjGDWD9OnuxsI3sbo9ywOUyOz6YcZgbOy0_8Y4Vh5hT6CJ3wfWI86q_SDHydkGJwfc9ylhm7OUnbV6oef2O1aA_qW9InIZzCb7gy1cOj1tqVBlfWZn8yRrRl3EvM7yTSZbWD7eL8g5YCqpbdg0z_l2L6NCPtd8e2oLv50OTcai_0tUjVLN7ElGMt_ZWe1LGrNvltaYNFa3QQ-kXTJJPD3SrOfZIDnRHvJfDaLzv0GEUW-PBlmx_VHtCx4TQ9yLoj60zw"

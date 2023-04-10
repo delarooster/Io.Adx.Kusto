@@ -1,0 +1,27 @@
+.create-merge table Telemetry (
+    CreationTime: datetime,
+    EnqueuedTime: datetime,
+    SequenceNumber: string,
+    DeviceID: string,
+    Alarm: dynamic,
+    Circuit: dynamic,
+    Mode: dynamic,
+    AcMeter: dynamic,
+    DcMeter: dynamic,
+    Gnss: dynamic,
+    Generator: dynamic,
+    Hvac: dynamic,
+    MarineEngine: dynamic,
+    InverterCharger: dynamic,
+    Tank: dynamic,
+    Hub: dynamic
+)
+
+.create-merge table Connectivity (
+    EnqueuedTime: datetime,
+    CorrelationID: string,
+    HubName: string,
+    OperationType: string,
+    DeviceID: string,
+    ModuleID: string
+)

@@ -1,0 +1,9 @@
+.create-or-alter table Connectivity ingestion json mapping "ConnectivityMapping"
+'['
+'    { "column": "EnqueuedTime", "path": "$.enqueuedTime" }, '
+'    { "column": "CorrelationID", "path": "$.correlationId" }, '
+'    { "column": "HubName", "path": "$.hubName" }, '
+'    { "column": "OperationType", "path": "$.operationType" }, '
+'    { "column": "DeviceID", "path": "$.deviceId" }, '
+'    { "column": "ModuleID", "path": "$.moduleId" } '
+']'

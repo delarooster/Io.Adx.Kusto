@@ -1,0 +1,35 @@
+resources:
+    - repo: self
+trigger:
+  - feature*
+  - sandbox*
+  - develop
+  - release
+
+variables:
+- template: pipelines/variables/io_variables.yaml  
+- name: sandboxDeploy
+  value: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/sandbox')]
+- name: developDeploy
+  value: $[eq(variables['Build.SourceBranch'], 'refs/heads/develop')]
+- name: releaseDeploy
+  value: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/release')]
+
+stages:
+  - template: pipelines/rev-pipeline.yaml
+    parameters:
+      adxCluster: ${{ variables.nonProdNeuAdxCluster }}
+      adxDatabase: ${{ variables.nonProdAdxDatabase }}
+      variableGroup: ${{ variables.variableGroup }}
+
+  - stage: Sandbox
+    displayName: Deploy to Sandbox
+    variables: []
+    jobs:
+      - template: pipelines/deploy-db-template.yaml
+        parameters:
+            serviceConnection: ${{ variables.servicePrincipal }}
+            env: ${{ variables.nonProdEnvironment }}
+            adxCluster: ${{ variables.nonProdNeuAdxCluster }}
+            adxDatabase: ${{ variables.nonProdAdxDatabase }}
+            variableGroup: ${{ variables.variableGroup }}

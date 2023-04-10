@@ -1,0 +1,78 @@
+parameters:
+  - name: env
+    type: string
+  - name: adxCluster
+    type: string
+  - name: serviceConnection
+    type: string
+  - name: adxDatabase
+    type: string
+  - name: variableGroup
+    type: string
+
+
+jobs:
+    - deployment: ${{ parameters.adxDatabase }}
+      environment: ${{ parameters.env }}
+      pool:
+          vmImage: "ubuntu-latest"
+      variables:
+        - name: clusterUri
+          value: "https://${{ parameters.adxCluster }}.kusto.windows.net"
+        - group: ${{ parameters.variableGroup }}
+      strategy:
+          runOnce: #rolling, canary are the other strategies that are supported
+              deploy:
+                  steps:
+                      - checkout: self
+                        clean: true
+
+                      - bash: |
+                            # Fails if one of the command fails in the script
+                            set -e
+                            clientVersion=$(curl https://delta-kusto.azurefd.net/clientVersion/unique?fromClientVersion=0)
+                            # Display the version on console
+                            echo "Client Version:  $clientVersion"
+                            wget https://github.com/microsoft/delta-kusto/releases/download/$clientVersion/delta-kusto-linux.tar.gz
+                            tar --extract --file delta-kusto-linux.tar.gz
+                            chmod +x ./delta-kusto
+                        displayName: Install Delta-Kusto
+
+                      - task: DownloadPipelineArtifact@2
+                        inputs:
+                          buildType: current
+                          artifactName: kql-scripts
+                          targetPath: $(System.DefaultWorkingDirectory)/pipelines/kql-scripts
+                        displayName:  Download artifact 'kql-scripts'
+
+                      - bash: |
+                          echo "Directory printout --> "
+                          ls -R .
+                        displayName: Directory printout
+
+                      - task: AzureCLI@2
+                        displayName: 'Run Delta-Kusto'
+                        inputs:
+                            azureSubscription: ${{ parameters.serviceConnection }}
+                            scriptType: bash
+                            scriptLocation: 'inlineScript'
+                            inlineScript: |
+                                # Fails if one of the command fails in the script
+                                set -e
+
+                                adxDatabase=${{ parameters.adxDatabase }}
+                                echo "Targeted Adx Database: $adxDatabase"
+
+                                scriptFolder="$(System.DefaultWorkingDirectory)/pipelines"
+                                echo "Location of pipeline files:  $scriptFolder"
+
+                                clusterUri=${{ variables.clusterUri}}
+                                echo "Cluster URI:  $clusterUri"
+
+                                # Package the login in a JSON payload
+                                login='{"tenantId":"$(tenant_id)","clientId":"$(kustoClientId)","secret":"$(kustoClientPw)"}'
+
+                                ./delta-kusto -p $scriptFolder/push-state-to-db-parameters.yaml \
+                                              -o jobs.push-state.current.adx.clusterUri=$clusterUri \
+                                              jobs.push-state.current.adx.database=$adxDatabase \
+                                              tokenProvider.login=$login

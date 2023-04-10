@@ -1,0 +1,40 @@
+variables:
+- group: Io_GP_develop
+- name: variableGroup
+  value: Io_GP_develop
+- name: nonProdUsaAdxCluster
+  value: filler_for_now
+- name: nonProdNeuAdxCluster
+  value: sharedhothnadx.eastus
+- name: nonProdAdxDatabase
+  value: Dvusahoth
+- name: nonProdEnvironment
+  value: IO-HoTH-dv
+- name: servicePrincipal
+  value: IO-HoTH-Dv
+- name: central_us
+  value: cus
+- name: north_europe
+  value: neu
+- name: sandboxAppId
+  value: 5371
+- name: developAppId
+  value: 5768
+- name: testAppId
+  value: 5767
+- name: stagingAppId
+  value: 5373
+- name: productionAppId
+  value: 5372
+- name: non_production
+  value: 'n'
+- name: production
+  value: 'p'
+
+
+- name: prodEnvironment
+  value: filler_for_now
+- name: prodUsaAdxCluster
+  value: filler_for_now
+- name: prodNeuAdxCluster
+  value: filler_for_now

@@ -1,0 +1,27 @@
+sendErrorOptIn:  true
+jobs:
+  download-dev:
+    priority: 0
+    target:
+        adx:
+            clusterUri:  to-be-overridden
+            database:  to-be-overridden
+    action:
+        folderPath:  kql-scripts/complete
+  delta-dev:
+    priority: 1
+    current:
+        scripts:
+            - folderPath:  ../schema
+    target:
+        adx:
+            clusterUri:  to-be-overridden
+            database:  to-be-overridden
+    action:
+        pushToConsole:  true
+        filePath:  kql-scripts/delta.kql
+tokenProvider:
+    login:
+        tenantId:  to-be-overriden
+        clientId:  to-be-overriden
+        secret:  to-be-overriden
