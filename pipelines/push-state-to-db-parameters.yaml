@@ -2,12 +2,12 @@ sendErrorOptIn: true
 jobs:
     push-state:
         current:
-            scripts:
-                - folderPath: ../pipelines/kql-scripts
-        target:
             adx:
                 clusterUri: to-be-overriden
                 database: to-be-overriden
+        target:
+            scripts:
+                - filePath: ../schema/script.kql
         action:
             pushToCurrent: true
             pushToConsole: true

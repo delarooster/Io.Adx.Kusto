@@ -12,7 +12,7 @@ jobs:
     priority: 1
     current:
         scripts:
-            - folderPath:  ../schema
+            - filePath: ../schema/script.kql
     target:
         adx:
             clusterUri:  to-be-overridden
