@@ -16,11 +16,11 @@ variables:
   value: $[startsWith(variables['Build.SourceBranch'], 'refs/heads/release')]
 
 stages:
-  - template: pipelines/rev-pipeline.yaml
-    parameters:
-      adxCluster: ${{ variables.nonProdNeuAdxCluster }}
-      adxDatabase: ${{ variables.nonProdAdxDatabase }}
-      variableGroup: ${{ variables.variableGroup }}
+  # - template: pipelines/rev-pipeline.yaml
+  #   parameters:
+  #     adxCluster: ${{ variables.nonProdNeuAdxCluster }}
+  #     adxDatabase: ${{ variables.nonProdAdxDatabase }}
+  #     variableGroup: ${{ variables.variableGroup }}
 
   - stage: Sandbox
     displayName: Deploy to Sandbox

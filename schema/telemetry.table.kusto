@@ -16,12 +16,3 @@
     Tank: dynamic,
     Hub: dynamic
 )
-
-.create-merge table Connectivity (
-    EnqueuedTime: datetime,
-    CorrelationID: string,
-    HubName: string,
-    OperationType: string,
-    DeviceID: string,
-    ModuleID: string
-)
